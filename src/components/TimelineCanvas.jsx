@@ -211,16 +211,11 @@ const TimelineCanvas = ({
       const labelRadius = 6;
       ctx.beginPath();
       if (isSelected) {
-        // 선택된 이벤트의 레이블 배경색 설정
-        // colorStart를 RGB로 변환하여 투명도 적용
         const rgb = hexToRgb(colorStart);
         ctx.fillStyle = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, 0.15)`;
       } else {
         ctx.fillStyle = "#ffffff";
       }
-      ctx.strokeStyle = colorStart;
-      ctx.lineWidth = isSelected ? 2.5 : 2;
-
       roundRect(
         ctx,
         xStart - labelWidth / 2,
@@ -230,7 +225,6 @@ const TimelineCanvas = ({
         labelRadius
       );
       ctx.fill();
-      ctx.stroke();
 
       // 설명 텍스트
       ctx.fillStyle = "#333333";
@@ -238,13 +232,13 @@ const TimelineCanvas = ({
         '600 14px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
-      ctx.fillText(event.description, xStart, finalY - 10);
+      ctx.fillText(event.description, xStart, finalY - 8);
 
       // 시간 텍스트
       ctx.fillStyle = "#666666";
       ctx.font =
         '400 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif';
-      ctx.fillText(timeText, xStart, finalY + 10);
+      ctx.fillText(timeText, xStart, finalY + 8);
     });
   }, [totalDuration, events, canvasWidth, canvasHeight, selectedEventIndex]);
 
